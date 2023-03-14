@@ -1,9 +1,13 @@
 # xiliu-tenant-ui
 
 > 这是一个基于vue-admin-template 4.0.0搭建的后台管理系统。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
+如果这个项目让你有所收获，记得 Star 关注哦，这对我是非常不错的鼓励与支持。
 
-### 开源协议
+## 开源协议
 该项目采用MIT协议，无需授权，可以用来快速开发搭建项目，直接商业。
+
+## 接口项目
+请移步[xiliu-tenant](https://gitee.com/huoqstudy/xiliu-tenant)
 
 ## Build Setup
 
@@ -117,3 +121,6 @@ Views
 12|系统接口|根据业务代码自动生成相关的api接口文档。
 13|服务监控|监视当前系统CPU、内存、磁盘、堆栈等相关信息。
 13|缓存监控|监视当前缓存的相关信息。
+
+## 常见问题
+* 若发现bug，请提Issues
