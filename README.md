@@ -2,6 +2,8 @@
 
 > 这是一个基于vue-admin-template 4.0.0搭建的后台管理系统。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
+### 开源协议
+该项目采用MIT协议，无需授权，可以用来快速开发搭建项目，直接商业。
 
 ## Build Setup
 
@@ -49,9 +51,21 @@ npm run lint
 # 代码格式检查并自动修复
 npm run lint -- --fix
 ```
-# 开发规约
 
-## 命名规则
+## 所用技术
+### 前端
+
+技术     | 版本 |  说明 |
+-------- | ------ | ------
+Vue|	2.6|	前端框架
+elementUI|	2.15.X|	ui框架
+vuex|	3.1.0|	状态管理库
+axios|	0.18.1|	网络请求库
+avue|	2.10.10|	elementUI增强库
+
+## 开发规约
+
+### 命名规则
 
 Component：
 - 所有的Component文件都是以大写开头，除了index.vue。 组件名name 采用首字母大写，避免产生冲突。
