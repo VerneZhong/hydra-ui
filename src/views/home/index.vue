@@ -1,89 +1,9 @@
 <template>
-  <div class="dashboard-container">
-    <!-- 项目 + 团队成员介绍 -->
-    <el-row :gutter="40">
-      <!-- 项目介绍 -->
-      <el-col :md="12" :lg="12" class="card-panel__col">
-        <Project />
-      </el-col>
-
-      <!-- 团队介绍 -->
-      <el-col :md="12" :lg="12" class="card-panel__col">
-        <Team />
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="40" style="margin-top: 20px">
-      <el-col :xs="24" :sm="24" :lg="8" class="card-panel__col">
-        <el-card class="out-border">
-          <template #header>
-            <span class="fw-b">预算总览</span>
-          </template>
-          <radar-chart />
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <el-card class="out-border">
-          <template #header>
-            <span class="fw-b">区域分布</span>
-          </template>
-          <pie-chart />
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <el-card class="out-border">
-          <template #header>
-            <span class="fw-b">成交数量</span>
-          </template>
-          <bar-chart />
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <div class="overview-layout">
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <div class="out-border">
-            <div class="layout-title">商品总览</div>
-            <div style="padding: 40px">
-              <el-row>
-                <el-col :span="6" class="color-danger overview-item-value">100</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">400</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">50</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">500</el-col>
-              </el-row>
-              <el-row class="font-medium">
-                <el-col :span="6" class="overview-item-title">已下架</el-col>
-                <el-col :span="6" class="overview-item-title">已上架</el-col>
-                <el-col :span="6" class="overview-item-title">库存紧张</el-col>
-                <el-col :span="6" class="overview-item-title">全部商品</el-col>
-              </el-row>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="out-border">
-            <div class="layout-title">用户总览</div>
-            <div style="padding: 40px">
-              <el-row>
-                <el-col :span="6" class="color-danger overview-item-value">100</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">200</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">1000</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">5000</el-col>
-              </el-row>
-              <el-row class="font-medium">
-                <el-col :span="6" class="overview-item-title">今日新增</el-col>
-                <el-col :span="6" class="overview-item-title">昨日新增</el-col>
-                <el-col :span="6" class="overview-item-title">本月新增</el-col>
-                <el-col :span="6" class="overview-item-title">会员总数</el-col>
-              </el-row>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
-
+<!--  <div class="dashboard-container">-->
+    <div class="bg-fox">
+      <img src="@/assets/images/bgImg-yama.jpg">
     </div>
-  </div>
+<!--  </div>-->
 </template>
 
 <script>
@@ -91,20 +11,10 @@ import { mapGetters } from 'vuex'
 import img_home_order from '@/assets/images/home_order.png';
 import img_home_today_amount from '@/assets/images/home_today_amount.png';
 import img_home_yesterday_amount from '@/assets/images/home_yesterday_amount.png';
-import RadarChart from './components/RadarChart'
-import PieChart from './components/PieChart'
-import BarChart from './components/BarChart'
-import Team from './components/Team'
-import Project from './components/Project'
 
 export default {
   name: 'Home',
   components: {
-    RadarChart,
-    PieChart,
-    BarChart,
-    Team,
-    Project
   },
   computed: {
     ...mapGetters(['name'])
@@ -240,4 +150,16 @@ export default {
     padding: 8px;
   }
 }
+.bg-fox {
+  width: 100%; /* 或者指定宽度 */
+  height: 100vh; /* 或者指定高度 */
+  overflow: hidden; /* 隐藏超出部分 */
+}
+
+.bg-fox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持宽高比并覆盖整个容器 */
+}
+
 </style>

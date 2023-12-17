@@ -12,9 +12,6 @@
         <el-tooltip content="源码地址" effect="dark" placement="bottom">
           <xiliu-git id="xiliu-git" class="right-menu-item hover-effect"></xiliu-git>
         </el-tooltip>
-        <el-tooltip content="文档地址" effect="dark" placement="bottom">
-          <xiliu-doc id="xiliu-doc" class="right-menu-item hover-effect"></xiliu-doc>
-        </el-tooltip>
 
       </template>
 
@@ -47,12 +44,10 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
-import XiliuGit from "../../components/Xiliiu/Git/index.vue";
-import XiliuDoc from "../../components/Xiliiu/Doc/index.vue";
+import XiliuGit from '@/components/Git/index.vue';
 
 export default {
   components: {
-    XiliuDoc,
     XiliuGit,
     Breadcrumb,
     Hamburger,

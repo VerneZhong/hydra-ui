@@ -48,7 +48,7 @@
       </div>
       <!-- 底部 版权 -->
       <div style="position: absolute; bottom: 40px; width: 100%; text-align: center; color: #666;">
-        Copyright ©2022  | 希留网络科技有限公司 - 提供技术支持
+        Copyright ©2024  | 名大小昊
       </div>
     </div>
   </div>
@@ -72,8 +72,8 @@ export default {
     return {
       codeUrl: "",
       loginForm: {
-        userName: 'test',
-        passWord: '123456',
+        userName: 'admin',
+        passWord: '',
         // 随机字符串
         nonceStr: '',
         // 验证值
