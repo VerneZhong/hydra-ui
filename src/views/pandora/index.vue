@@ -88,7 +88,13 @@ export default {
         console.error('Error fetching data:', error);
       }
     },
-    updateChart(chartData, chartLabels) {
+    calculateMiddleTime(start, end) {
+      const startDate = moment(start);
+      const endDate = moment(end);
+      const middleTimestamp = (startDate.valueOf() + endDate.valueOf()) / 2;
+      return moment(middleTimestamp).format('YYYY-MM-DD HH:mm:ss');
+    },
+    updateChart(chartData, originalChartLabels) {
       // 如果已经有一个图表实例，先销毁它
       if (this.chart) {
         this.chart.destroy();
@@ -98,10 +104,11 @@ export default {
         const canvas = this.$refs.myChart;
         if (canvas) {
           const ctx = canvas.getContext('2d');
+          // 获取开始、结束和中间时间点
           this.chart = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: chartLabels,
+              labels: originalChartLabels,
               datasets: [{
                 label: '湿度数据',
                 data: chartData,
@@ -117,10 +124,32 @@ export default {
                   type: 'time',
                   time: {
                     parser: 'YYYY-MM-DD HH:mm:ss',
-                    tooltipFormat: 'll HH:mm'
+                    tooltipFormat: 'll YYYY-MM-DD HH:mm:ss',
+                    unit: 'minute',
+                    // 确保在时间轴上显示所有的数据点
+                    displayFormats: {
+                      minute: 'YYYY-MM-DD HH:mm:ss'
+                    }
+                  },
+                  ticks: {
+                    // 覆盖生成刻度标签的逻辑
+                    callback: function(value, index, ticks) {
+                      // 使用统一格式转换ticks中的时间和原始标签时间
+                      const format = 'YYYY-MM-DD HH:mm';
+                      const formattedValue = moment(value).format(format);
+                      const startTimeFormatted = moment(originalChartLabels[0]).format(format);
+                      const endTimeFormatted = moment(originalChartLabels[originalChartLabels.length - 1]).format(format);
+                      const middleValueFormatted = moment(ticks[Math.floor(ticks.length / 2)].value).format(format);
+
+                      if (formattedValue === startTimeFormatted || formattedValue === middleValueFormatted || formattedValue === endTimeFormatted) {
+                        return moment(value).format('YYYY-MM-DD HH:mm:ss'); // 返回完整格式的时间字符串
+                      } else {
+                        return null; // 隐藏其他刻度标签
+                      }
+                    }
                   },
                   title: {
-                    display: true,
+                    display: false,
                     text: '时间'
                   }
                 },
