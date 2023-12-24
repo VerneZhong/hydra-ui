@@ -19,7 +19,8 @@
           </el-form-item>
           <!-- 将按钮移到这里 -->
           <el-form-item>
-            <el-button type="primary" @click="fetchChartData">search</el-button>
+<!--            <el-button type="primary" @click="fetchChartData">search</el-button>-->
+            <el-button type="primary" @click="validateForm">search</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -42,6 +43,16 @@ import 'chartjs-adapter-moment';
 export default {
   name: 'ChartComponent',
   data() {
+    const validateDateRange = (rule, value, callback) => {
+      if (!value) {
+        callback(new Error('The field is required'));
+      } else if (moment(this.form.endTime).diff(moment(this.form.startTime), 'months', true) > 1) {
+        callback(new Error('The date range must be within one month'));
+      } else {
+        callback();
+      }
+    };
+
     return {
       form: {
         startTime: '',
@@ -51,9 +62,11 @@ export default {
       rules: {
         startTime: [
           { required: true, message: 'Please select a start time', trigger: 'blur' },
+          { validator: validateDateRange, trigger: 'blur' }
         ],
         endTime: [
-          { required: true, message: 'Please select a end time', trigger: 'blur' },
+          { required: true, message: 'Please select an end time', trigger: 'blur' },
+          { validator: validateDateRange, trigger: 'blur' }
         ]
       },
       chart: null,
@@ -61,7 +74,21 @@ export default {
       chartLabels: null
     };
   },
+
+
+
   methods: {
+    // 新增验证表单方法
+    validateForm() {
+      this.$refs.queryForm.validate((valid) => {
+        if (valid) {
+          this.fetchChartData();
+        } else {
+          console.log('Form validation failed');
+          return false;
+        }
+      });
+    },
     async fetchChartData() {
       const requestData = {
         startTime: moment(this.form.startTime).format('YYYY-MM-DD HH:mm:ss'),
