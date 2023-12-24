@@ -9,8 +9,7 @@
       <template v-if="device!=='mobile'">
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
-        <el-tooltip content="源码地址" effect="dark" placement="bottom">
-          <xiliu-git id="xiliu-git" class="right-menu-item hover-effect"></xiliu-git>
+        <el-tooltip content="Source code address" effect="dark" placement="bottom">
         </el-tooltip>
 
       </template>
@@ -24,14 +23,14 @@
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              首页
+
             </el-dropdown-item>
           </router-link>
           <router-link to="/user/profile">
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item>Personal center</el-dropdown-item>
           </router-link>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">退出系统</span>
+            <span style="display:block;">logout</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -44,11 +43,9 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
-import XiliuGit from '@/components/Git/index.vue';
 
 export default {
   components: {
-    XiliuGit,
     Breadcrumb,
     Hamburger,
     Screenfull,
@@ -66,7 +63,7 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      this.$modal.confirm('确定注销并退出系统吗？').then(() => {
+      this.$modal.confirm('Are you sure you want to log out and exit the system?？').then(() => {
         this.$store.dispatch('user/LogOut').then(() => {
           location.href = '/index';
         })

@@ -38,9 +38,9 @@ export const constantRoutes = [
     redirect: '/home',
     children: [{
       path: 'home',
-      name: 'home',
+      name: 'Home',
       component: () => import('@/views/home/index'),
-      meta: { title: '首页', icon: 'dashboard',affix: true }
+      meta: { title: 'Home', icon: 'dashboard',affix: true }
     }]
   },
   {

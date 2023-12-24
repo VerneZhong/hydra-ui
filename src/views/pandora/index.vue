@@ -3,23 +3,23 @@
     <el-row type="flex" justify="center" align="middle">
       <el-col :span="20">
         <el-form :model="form" :rules="rules" ref="queryForm" inline>
-          <el-form-item label="开始时间" prop="startTime">
-            <el-date-picker v-model="form.startTime" type="datetime" placeholder="选择日期时间">
+          <el-form-item label="Start time" prop="startTime">
+            <el-date-picker v-model="form.startTime" type="datetime" placeholder="Select date time">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="结束时间" prop="endTime">
-            <el-date-picker v-model="form.endTime" type="datetime" placeholder="选择日期时间">
+          <el-form-item label="End time" prop="endTime">
+            <el-date-picker v-model="form.endTime" type="datetime" placeholder="Select date time">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="查询类型">
-            <el-select v-model="form.queryType" placeholder="请选择">
-              <el-option label="潘多拉176" value="176"></el-option>
-              <el-option label="潘多拉194" value="194"></el-option>
+          <el-form-item label="Pandora type">
+            <el-select v-model="form.queryType" placeholder="please choose">
+              <el-option label="176" value="176"></el-option>
+              <el-option label="194" value="194"></el-option>
             </el-select>
           </el-form-item>
           <!-- 将按钮移到这里 -->
           <el-form-item>
-            <el-button type="primary" @click="fetchChartData">查询</el-button>
+            <el-button type="primary" @click="fetchChartData">search</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -50,11 +50,11 @@ export default {
       },
       rules: {
         startTime: [
-          { required: true, message: '请选择开始时间', trigger: 'blur' },
+          { required: true, message: 'Please select a start time', trigger: 'blur' },
         ],
         endTime: [
-          { required: true, message: '请选择结束时间', trigger: 'blur' },
-        ],
+          { required: true, message: 'Please select a end time', trigger: 'blur' },
+        ]
       },
       chart: null,
       chartData: null,
@@ -110,10 +110,12 @@ export default {
             data: {
               labels: originalChartLabels,
               datasets: [{
-                label: '湿度数据',
+                label: 'Humidity data',
                 data: chartData,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
+                pointRadius: 10, // 控制点的大小，您可以根据需要调整这个值
+                showLine: false, // 设置为 false，以移除数据点之间的连线
                 tension: 0.1
               }]
             },
@@ -132,6 +134,11 @@ export default {
                     }
                   },
                   ticks: {
+                    // 设置刻度标签字体大小
+                    font: {
+                      size: 18, // 增大字体大小
+                      weight: 'bold' // 加粗字体
+                    },
                     // 覆盖生成刻度标签的逻辑
                     callback: function(value, index, ticks) {
                       // 使用统一格式转换ticks中的时间和原始标签时间
@@ -144,20 +151,41 @@ export default {
                       if (formattedValue === startTimeFormatted || formattedValue === middleValueFormatted || formattedValue === endTimeFormatted) {
                         return moment(value).format('YYYY-MM-DD HH:mm:ss'); // 返回完整格式的时间字符串
                       } else {
-                        return null; // 隐藏其他刻度标签
+                        if (index === 0) {
+                          return moment(value).format('YYYY-MM-DD HH:mm:ss');
+                        } else {
+                          return null; // 隐藏其他刻度标签
+                        }
                       }
                     }
                   },
                   title: {
                     display: false,
-                    text: '时间'
+                    text: 'time',
+                    // 设置轴标题字体大小
+                    font: {
+                      size: 20, // 增加字体大小
+                      weight: 'bold' // 加粗字体
+                    }
                   }
                 },
                 y: {
                   beginAtZero: true,
                   title: {
                     display: true,
-                    text: '湿度 (%)'
+                    text: 'humidity (%)',
+                    // 设置轴标题字体大小
+                    font: {
+                      size: 20, // 增大字体大小
+                      weight: 'bold', // 加粗字体
+                    }
+                  },
+                  ticks: {
+                    // 设置刻度标签字体大小
+                    font: {
+                      size: 18, // 增大字体大小
+                      weight: 'bold', // 加粗字体
+                    }
                   }
                 }
               }

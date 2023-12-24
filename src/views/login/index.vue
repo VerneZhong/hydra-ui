@@ -18,28 +18,28 @@
           <!-- 表单盒子 -->
           <div class="from-box from-box-show">
             <h3 class="from-title">
-              <span>后台管理</span>
+              <span>Pandora management</span>
             </h3>
             <el-form size="small" label-position="left" label-width="0px" ref="loginForm" :model="loginForm" :rules="loginRules">
               <el-form-item prop="userName">
-                <el-input v-model="loginForm.userName" prefix-icon="el-icon-user" placeholder="请输入用户名" size="medium" />
+                <el-input v-model="loginForm.userName" prefix-icon="el-icon-user" placeholder="Please enter user name" size="medium" />
               </el-form-item>
               <el-form-item prop="passWord">
-                <el-input v-model="loginForm.passWord" prefix-icon="el-icon-unlock" type="password" placeholder="请输入密码" size="medium"
+                <el-input v-model="loginForm.passWord" prefix-icon="el-icon-unlock" type="password" placeholder="Please enter password" size="medium"
                  :type="passwordType"  @keyup.native.enter="handleLogin()" />
                 <span class="show-pwd" @click="showPwd">
                   <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
                 </span>
               </el-form-item>
               <el-form-item>
-                <span style="color: #999;"> <el-checkbox v-model="loginForm.remember">记住我</el-checkbox></span>
+                <span style="color: #999;"> <el-checkbox v-model="loginForm.remember">remember me</el-checkbox></span>
                 <span style="float: right; color: #999;"></span>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" :loading="loading" round size="medium" style="width: 100%;" @click="handleLogin()">登录</el-button>
+                <el-button type="primary" :loading="loading" round size="medium" style="width: 100%;" @click="handleLogin()">Log in</el-button>
               </el-form-item>
               <!-- 滑块验证 -->
-              <el-dialog title="请拖动滑块完成拼图" width="360px" :visible.sync="isShowSliderVerify" :close-on-click-modal="false" @closed="refresh" append-to-body>
+              <el-dialog title="Please drag the slider to complete the puzzle" width="360px" :visible.sync="isShowSliderVerify" :close-on-click-modal="false" @closed="refresh" append-to-body>
                 <slider-verify ref="sliderVerify" @success="onSuccess" @fail="onFail" @again="onAgain"/>
               </el-dialog>
             </el-form>
@@ -64,7 +64,7 @@ export default {
   data() {
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
+        callback(new Error('Password cannot be less than 6 characters'))
       } else {
         callback()
       }
@@ -81,8 +81,8 @@ export default {
         remember: false
       },
       loginRules: {
-        userName: [{ required: true, trigger: 'blur', message: "请输入用户名"}],
-        passWord: [{ required: true, trigger: 'blur', message: "请输入密码"},{validator: validatePassword }]
+        userName: [{ required: true, trigger: 'blur', message: "Please enter user name"}],
+        passWord: [{ required: true, trigger: 'blur', message: "Please enter password"},{validator: validatePassword }]
       },
       loading: false,
       passwordType: 'password',
@@ -127,7 +127,7 @@ export default {
           self.$refs.sliderVerify.verifySuccessEvent();
           setTimeout(() => {
             self.isShowSliderVerify = false;
-            self.message('success', '登录成功');
+            self.message('success', 'login successful');
           }, 500);
           this.$router.push({ path: this.redirect || '/' })
       }).catch(() => {
@@ -146,7 +146,7 @@ export default {
     },
     /* 滑动验证异常*/
     onAgain() {
-      this.message('error', '滑动操作异常，请重试');
+      this.message('error', 'The sliding operation is abnormal, please try again');
     },
     /* 刷新验证码*/
     refresh() {
