@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '服务系统' // page title
+const name = defaultSettings.title || 'service system' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.

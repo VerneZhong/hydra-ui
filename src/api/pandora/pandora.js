@@ -11,3 +11,10 @@ export function query(query) {
     data: query
   })
 }
+
+export function queryImgList() {
+  return request({
+    url: '/system/pandora/getPandoraFile',
+    method: 'get'
+  })
+}

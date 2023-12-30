@@ -19,7 +19,7 @@
           </el-form-item>
           <!-- 将按钮移到这里 -->
           <el-form-item>
-<!--            <el-button type="primary" @click="fetchChartData">search</el-button>-->
+            <!--            <el-button type="primary" @click="fetchChartData">search</el-button>-->
             <el-button type="primary" @click="validateForm">search</el-button>
           </el-form-item>
         </el-form>
@@ -51,7 +51,7 @@ export default {
       } else {
         callback();
       }
-    };
+    }
 
     return {
       form: {
@@ -61,22 +61,19 @@ export default {
       },
       rules: {
         startTime: [
-          { required: true, message: 'Please select a start time', trigger: 'blur' },
-          { validator: validateDateRange, trigger: 'blur' }
+          {required: true, message: 'Please select a start time', trigger: 'blur'},
+          {validator: validateDateRange, trigger: 'blur'}
         ],
         endTime: [
-          { required: true, message: 'Please select an end time', trigger: 'blur' },
-          { validator: validateDateRange, trigger: 'blur' }
+          {required: true, message: 'Please select an end time', trigger: 'blur'},
+          {validator: validateDateRange, trigger: 'blur'}
         ]
       },
       chart: null,
       chartData: null,
       chartLabels: null
-    };
+    }
   },
-
-
-
   methods: {
     // 新增验证表单方法
     validateForm() {
@@ -94,14 +91,14 @@ export default {
         startTime: moment(this.form.startTime).format('YYYY-MM-DD HH:mm:ss'),
         endTime: moment(this.form.endTime).format('YYYY-MM-DD HH:mm:ss'),
         pandoraType: this.form.queryType
-      };
+      }
 
       try {
         const response = await query(requestData);
         if (response && response.code === 200) {
-          if (response.rows && response.rows.length > 0) {
-            const chartData = response.rows.map(item => item.humidity);
-            const chartLabels = response.rows.map(item => item.time);
+          if (response.data && response.data.length > 0) {
+            const chartData = response.data.map(item => item.humidity);
+            const chartLabels = response.data.map(item => item.time);
             this.updateChart(chartData, chartLabels);
           } else {
             // 处理没有数据的情况
@@ -153,7 +150,7 @@ export default {
                   type: 'time',
                   time: {
                     parser: 'YYYY-MM-DD HH:mm:ss',
-                    tooltipFormat: 'll YYYY-MM-DD HH:mm:ss',
+                    tooltipFormat: 'YYYY-MM-DD HH:mm:ss',
                     unit: 'minute',
                     // 确保在时间轴上显示所有的数据点
                     displayFormats: {
@@ -167,7 +164,7 @@ export default {
                       weight: 'bold' // 加粗字体
                     },
                     // 覆盖生成刻度标签的逻辑
-                    callback: function(value, index, ticks) {
+                    callback: function (value, index, ticks) {
                       // 使用统一格式转换ticks中的时间和原始标签时间
                       const format = 'YYYY-MM-DD HH:mm';
                       const formattedValue = moment(value).format(format);
@@ -230,9 +227,11 @@ export default {
 .query-container {
   margin-top: 20px;
   padding: 20px;
+
   .el-form-item {
     margin-bottom: 0; // 防止表单项之间有额外的间距
   }
+
   .button-container {
     text-align: right;
   }

@@ -21,9 +21,9 @@ export default {
   },
   // 确认窗体
   confirm(content) {
-    return MessageBox.confirm(content, "系统提示", {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
+    return MessageBox.confirm(content, "system hint", {
+      confirmButtonText: 'Sure',
+      cancelButtonText: 'Cancel',
       type: "warning",
     })
   },

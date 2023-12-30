@@ -46,16 +46,16 @@ service.interceptors.response.use(response => {
     const msg = errorCode[code] || res.message || errorCode['default']
     // 401:未登录;
     if (code === 401) {
-      MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录,', '系统提示', {
-        confirmButtonText: '重新登录',
-        cancelButtonText: '取消',
+      MessageBox.confirm('You have been logged out. You can cancel and stay on this page, or log in again.,', 'system hint', {
+        confirmButtonText: 're-register',
+        cancelButtonText: 'cancel',
         type: 'warning'
       }).then(() => {
         store.dispatch('user/LogOut').then(() => {
           location.href = '/index';
         })
       }).catch(() => {});
-      return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
+      return Promise.reject('Invalid session, or the session has expired, please log in again.')
     } else if (code === 500) {
       Message({
         message: msg,
@@ -74,7 +74,7 @@ service.interceptors.response.use(response => {
   error => {
     console.log('err' + error) // for debug
     Message({
-      message: '服务器开小差了，请稍后再试。',
+      message: 'The server is out of service, please try again later.',
       type: 'error',
       duration: 5 * 1000
     })
@@ -84,7 +84,7 @@ service.interceptors.response.use(response => {
 
 // 通用下载方法
 export function download(url, params, filename) {
-  downloadLoadingInstance = Loading.service({ text: "正在下载数据，请稍候", spinner: "el-icon-loading", background: "rgba(0, 0, 0, 0.7)", })
+  downloadLoadingInstance = Loading.service({ text: "Downloading data, please wait.", spinner: "el-icon-loading", background: "rgba(0, 0, 0, 0.7)", })
   return service.post(url, params, {
     transformRequest: [(params) => { return tansParams(params) }],
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -103,7 +103,7 @@ export function download(url, params, filename) {
     downloadLoadingInstance.close();
   }).catch((r) => {
     console.error(r)
-    Message.error('下载文件出现错误，请联系管理员！')
+    Message.error('There was an error downloading the file, please contact the administrator!')
     downloadLoadingInstance.close();
   })
 }

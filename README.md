@@ -5,7 +5,7 @@
 ## Build Setup
 
 # 进入项目目录
-cd xiliu-admin-web
+cd hydra-ui/
 
 # 安装依赖
 npm install
