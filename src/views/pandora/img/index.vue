@@ -4,7 +4,7 @@
     <div class="image-display-container">
       <div v-for="(image, index) in images" :key="index" class="image-container">
         <img :src="image.filePath" @click="enlargeImage(image.filePath)"/>
-        <p>{{ image.fileName }}</p>　
+        <p>{{ image.fileName }}</p>
         <p>{{ image.description }}</p>
       </div>
     </div>
@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import {queryImgList} from '@/api/pandora/pandora';
+import { queryImgList } from '@/api/pandora/pandora'
 
 export default {
-  name: "showImg",
+  name: 'ShowImg',
   data() {
     return {
       // 假设 images 数组包含图片的 URL 和名称
@@ -33,15 +33,15 @@ export default {
     }
   },
   created() {
-    this.fetchImages();
+    this.fetchImages()
   },
   methods: {
     async fetchImages() {
       try {
-        const response = await queryImgList();
-        this.images = response.data; // 假设后端返回的是一个包含images的对象
+        const response = await queryImgList()
+        this.images = response.data // 假设后端返回的是一个包含images的对象
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error('Error fetching images:', error)
       }
     },
     openUploadPage() {
@@ -50,11 +50,11 @@ export default {
     },
     enlargeImage(url) {
       // 这里编写点击图片放大的逻辑
-      this.selectedImageUrl = url;
-      this.isModalVisible = true;
+      this.selectedImageUrl = url
+      this.isModalVisible = true
     },
     closeModal() {
-      this.isModalVisible = false;
+      this.isModalVisible = false
     }
   }
 }
