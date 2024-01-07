@@ -14,7 +14,11 @@
           <el-form-item label="Pandora type">
             <el-select v-model="form.queryType" placeholder="please choose">
               <el-option label="176" value="176"></el-option>
+              <el-option label="193" value="193"></el-option>
               <el-option label="194" value="194"></el-option>
+              <el-option label="197" value="197"></el-option>
+              <el-option label="198" value="198"></el-option>
+              <el-option label="199" value="199"></el-option>
             </el-select>
           </el-form-item>
           <!-- 将按钮移到这里 -->
