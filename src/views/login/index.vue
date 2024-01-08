@@ -55,11 +55,11 @@
 </template>
 
 <script>
-  import sliderVerify from './sliderVerify';
+import sliderVerify from './sliderVerify'
 export default {
   name: 'Login',
   components: {
-    sliderVerify,
+    sliderVerify
   },
   data() {
     const validatePassword = (rule, value, callback) => {
@@ -70,7 +70,7 @@ export default {
       }
     }
     return {
-      codeUrl: "",
+      codeUrl: '',
       loginForm: {
         userName: 'admin',
         passWord: '',
@@ -81,8 +81,8 @@ export default {
         remember: false
       },
       loginRules: {
-        userName: [{ required: true, trigger: 'blur', message: "Please enter user name"}],
-        passWord: [{ required: true, trigger: 'blur', message: "Please enter password"},{validator: validatePassword }]
+        userName: [{ required: true, trigger: 'blur', message: 'Please enter user name' }],
+        passWord: [{ required: true, trigger: 'blur', message: 'Please enter password' }, { validator: validatePassword }]
       },
       loading: false,
       passwordType: 'password',
@@ -124,33 +124,33 @@ export default {
       let self = this;
       self.loading = true;
       self.$store.dispatch('user/login', self.loginForm).then(() => {
-          self.$refs.sliderVerify.verifySuccessEvent();
+          self.$refs.sliderVerify.verifySuccessEvent()
           setTimeout(() => {
-            self.isShowSliderVerify = false;
-            self.message('success', 'login successful');
-          }, 500);
+            self.isShowSliderVerify = false
+            self.message('success', 'login successful')
+          }, 500)
           this.$router.push({ path: this.redirect || '/' })
       }).catch(() => {
-        self.$refs.sliderVerify.verifyFailEvent();
+        self.$refs.sliderVerify.verifyFailEvent()
         self.loading = false;
-      });
+      })
     },
     /* 滑动验证成功*/
     onSuccess(captcha) {
-      Object.assign(this.loginForm, captcha);
-      this.login();
+      Object.assign(this.loginForm, captcha)
+      this.login()
     },
     /* 滑动验证失败*/
     onFail(msg) {
-      //this.message('error', msg || '验证失败，请控制拼图对齐缺口');
+      // this.message('error', msg || '验证失败，请控制拼图对齐缺口');
     },
     /* 滑动验证异常*/
     onAgain() {
-      this.message('error', 'The sliding operation is abnormal, please try again');
+      this.message('error', 'The sliding operation is abnormal, please try again')
     },
     /* 刷新验证码*/
     refresh() {
-      this.$refs.sliderVerify.refresh();
+      this.$refs.sliderVerify.refresh()
     },
     /* 提示弹框*/
     message(type, message) {
@@ -158,11 +158,10 @@ export default {
         showClose: true,
         type: type,
         message: message,
-        duration: 1500,
-      });
-    },
-
-  },
+        duration: 1500
+      })
+    }
+  }
 
 }
 </script>

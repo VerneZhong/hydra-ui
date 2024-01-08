@@ -31,7 +31,7 @@ router.beforeEach(async(to, from, next) => {
         next()
       } else {
           // 获取用户信息 user.js中的getInfo方法
-          await store.dispatch('user/getInfo').then(res =>{
+          await store.dispatch('user/getInfo').then(res => {
             store.dispatch('GenerateRoutes').then(accessRoutes => {
               // 根据roles权限生成可访问的路由表
               router.addRoutes(accessRoutes) // 动态添加可访问路由表
