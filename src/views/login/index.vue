@@ -48,7 +48,7 @@
       </div>
       <!-- 底部 版权 -->
       <div style="position: absolute; bottom: 40px; width: 100%; text-align: center; color: #666;">
-        Copyright ©2024  | 名大小昊
+        Copyright ©2024  | Hao Xu (許昊)
       </div>
     </div>
   </div>
