@@ -1,5 +1,6 @@
 <template>
   <div class="query-container">
+    <div v-if="notice" class="notice-message">{{ notice }}</div>
     <el-row type="flex" justify="center" align="middle">
       <el-col :span="20">
         <el-form :model="form" :rules="rules" ref="queryForm" inline>
@@ -11,7 +12,7 @@
             <el-date-picker v-model="form.endTime" type="datetime" placeholder="Select date time">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="Pandora type">
+          <el-form-item label="Pandora No.">
             <el-select v-model="form.queryType" placeholder="please choose">
               <el-option label="176" value="176"></el-option>
               <el-option label="193" value="193"></el-option>
@@ -75,7 +76,8 @@ export default {
       },
       chart: null,
       chartData: null,
-      chartLabels: null
+      chartLabels: null,
+      notice: 'Notice: The Pandora data processing was temporarily halted on December 6, 2023.'
     }
   },
   methods: {
@@ -242,6 +244,12 @@ export default {
 
   .button-container {
     text-align: right;
+  }
+
+  .notice-message {
+    color: red;
+    text-align: center;
+    margin: 20px;
   }
 }
 </style>

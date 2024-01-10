@@ -72,7 +72,7 @@ export default {
         // 滑块操作提示
         sliderHint: {
             type: String,
-            default: '向右滑动',
+            default: 'swipe right',
         },
         // 可允许的误差范围小；为1时，则表示滑块要与凹槽完全重叠，才能验证成功。默认值为5，若为 -1 则不进行机器判断
         accuracy: {
@@ -349,36 +349,36 @@ export default {
             this.verifySuccess = true;
             const elapsedTime = (this.timestamp / 1000).toFixed(1);
             if (elapsedTime < 1) {
-                this.successHint = `仅仅${elapsedTime}S，你的速度快如闪电`;
+                this.successHint = `only${elapsedTime}S，You are as fast as lightning`;
             } else if (elapsedTime < 2) {
-                this.successHint = `只用了${elapsedTime}S，这速度简直完美`;
+                this.successHint = `Only used${elapsedTime}S，This speed is perfect`;
             } else {
-                this.successHint = `耗时${elapsedTime}S，争取下次再快一点`;
+                this.successHint = `time consuming${elapsedTime}S，Try to be faster next time`;
             }
         },
         /* 校验失败*/
         verifyFailEvent(msg) {
-            this.verifyFail = true;
-            this.$emit('fail', msg);
-            this.refresh();
+            this.verifyFail = true
+            this.$emit('fail', msg)
+            this.refresh()
         },
         /* 刷新图片验证码*/
         refresh() {
             // 延迟class的删除，等待动画结束
             setTimeout(() => {
-                this.verifyFail = false;
-            }, 500);
-            this.isLoading = true;
-            this.verifyActive = false;
-            this.verifySuccess = false;
-            this.blockObj.style.left = 0;
-            this.sliderBoxWidth = 0;
-            this.sliderButtonLeft = 0;
+                this.verifyFail = false
+            }, 500)
+            this.isLoading = true
+            this.verifyActive = false
+            this.verifySuccess = false
+            this.blockObj.style.left = 0
+            this.sliderBoxWidth = 0
+            this.sliderButtonLeft = 0
             if (this.isFrontCheck) {
                 // 刷新画布
-                let {canvasWidth, canvasHeight} = this;
-                this.canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight);
-                this.blockCtx.clearRect(0, 0, canvasWidth, canvasHeight);
+                let {canvasWidth, canvasHeight} = this
+                this.canvasCtx.clearRect(0, 0, canvasWidth, canvasHeight)
+                this.blockCtx.clearRect(0, 0, canvasWidth, canvasHeight)
                 this.blockObj.width = canvasWidth;
                 // 刷新图片
                 this.image.src = this.getImageSrc();
