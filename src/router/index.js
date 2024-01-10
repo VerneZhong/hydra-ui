@@ -28,9 +28,9 @@ import Layout from '@/layout'
  *  公共路由
  */
 export const constantRoutes = [
-  {path: '/login',component: () => import('@/views/login/index'),hidden: true},
-  {path: '/404',component: () => import('@/views/error/404'),hidden: true},
-  {path: '/401',component: () => import('@/views/error/401'),hidden: true},
+  {path: '/login', component: () => import('@/views/login/index'), hidden: true},
+  {path: '/404', component: () => import('@/views/error/404'), hidden: true},
+  {path: '/401', component: () => import('@/views/error/401'), hidden: true},
 
   {
     path: '/',
@@ -40,7 +40,7 @@ export const constantRoutes = [
       path: 'home',
       name: 'Home',
       component: () => import('@/views/home/index'),
-      meta: { title: 'Home', icon: 'dashboard',affix: true }
+      meta: {title: 'Home', icon: 'dashboard', affix: true}
     }]
   },
   {
@@ -53,14 +53,14 @@ export const constantRoutes = [
         path: 'profile',
         component: () => import('@/views/sys/user/profile/index'),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
+        meta: {title: 'Personal center', icon: 'user'}
       }
     ]
   }
 ]
 
 // 动态路由，基于用户权限动态去加载
-export  const dynamicRoutes = [
+export const dynamicRoutes = [
   {
     path: '/system/dict-data',
     component: Layout,
@@ -71,7 +71,7 @@ export  const dynamicRoutes = [
         path: 'index/:dictId(\\d+)',
         component: () => import('@/views/sys/dict/data'),
         name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict' }
+        meta: {title: '字典数据', activeMenu: '/system/dict'}
       }
     ]
   },
@@ -85,15 +85,14 @@ export  const dynamicRoutes = [
         path: 'user/:roleId(\\d+)',
         component: () => import('@/views/sys/role/authUser'),
         name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role' }
+        meta: {title: '分配用户', activeMenu: '/system/role'}
       }
     ]
   },
 ]
 
 const createRouter = () => new Router({
-  //mode: 'history', // 去掉url中的#
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 })
 

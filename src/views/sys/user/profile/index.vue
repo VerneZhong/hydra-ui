@@ -4,7 +4,7 @@
       <el-col :span="6" :xs="24">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>个人信息</span>
+            <span>Personal information</span>
           </div>
           <div>
             <div class="text-center">
@@ -12,27 +12,27 @@
             </div>
             <ul class="list-group list-group-striped">
               <li class="list-group-item">
-                <svg-icon iconClass="user" /><span class="margin-left-4">用户名称</span>
+                <svg-icon iconClass="user" /><span class="margin-left-4">User name</span>
                 <div class="pull-right">{{user.userCode}}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="phone" /><span class="margin-left-4">手机号码</span>
+                <svg-icon icon-class="phone" /><span class="margin-left-4">Phone number</span>
                 <div class="pull-right">{{ user.mobile }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="email" /><span class="margin-left-4">用户邮箱</span>
+                <svg-icon icon-class="email" /><span class="margin-left-4">User email</span>
                 <div class="pull-right">{{ user.userEmail }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="tree" /><span class="margin-left-4">所属部门</span>
+                <svg-icon icon-class="tree" /><span class="margin-left-4">Department</span>
                 <div class="pull-right" v-if="user.dept">{{ user.dept.deptName }} </div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="peoples" /><span class="margin-left-4">所属角色</span>
+                <svg-icon icon-class="peoples" /><span class="margin-left-4">Role</span>
                 <div class="pull-right">{{ roleGroup }}</div>
               </li>
               <li class="list-group-item">
-                <svg-icon icon-class="date" /><span class="margin-left-4">创建日期</span>
+                <svg-icon icon-class="date" /><span class="margin-left-4">Creation date</span>
                 <div class="pull-right">{{ dateTimeFormat(user.createdTime) }}</div>
               </li>
             </ul>
@@ -42,13 +42,13 @@
       <el-col :span="18" :xs="24">
         <el-card>
           <div slot="header" class="clearfix">
-            <span>基本资料</span>
+            <span>Basic information</span>
           </div>
           <el-tabs v-model="activeTab">
-            <el-tab-pane label="基本资料" name="userinfo">
+            <el-tab-pane label="Basic information" name="userinfo">
               <userInfo :user="user" />
             </el-tab-pane>
-            <el-tab-pane label="修改密码" name="resetPwd">
+            <el-tab-pane label="change Password" name="resetPwd">
               <resetPwd :user="user" />
             </el-tab-pane>
           </el-tabs>
