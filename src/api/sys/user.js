@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { parseStrEmpty } from "@/utils/common";
+import { parseStrEmpty } from '@/utils/common'
 
 export function getUserList(params) {
   return request({
@@ -17,9 +17,9 @@ export function createUser(data) {
   })
 }
 
-export function updateUser(id,data) {
+export function updateUser(id, data) {
   return request({
-    url: '/ucenter/user/update/'+ id,
+    url: '/ucenter/user/update/' + id,
     method: 'post',
     data: data
   })

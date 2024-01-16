@@ -55,7 +55,7 @@
 
 <script>
 import { VueCropper } from 'vue-cropper'
-import { uploadAvatar } from '@/api/sys/user';
+import { uploadAvatar } from '@/api/sys/user'
 
 export default {
   components: { VueCropper },
@@ -129,7 +129,7 @@ export default {
       this.$refs.cropper.getCropBlob(data => {
         //  将blob格式转换为文件。File() 构造器创建新的 File 对象实例。
         const newFile = new window.File([data], this.fullFile.name, { type: this.fullFile.type })
-        let formData = new FormData()
+        const formData = new FormData()
         formData.append('avatarfile', newFile)
         uploadAvatar(formData).then(response => {
           this.open = false

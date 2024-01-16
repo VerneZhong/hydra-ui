@@ -175,10 +175,10 @@
 </template>
 
 <script>
-import { getUserList, updateUser, createUser, deleteUser,getUser } from '@/api/sys/user'
-import { treeselect } from "@/api/sys/dept";
-import Treeselect from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+import { getUserList, updateUser, createUser, deleteUser, getUser } from '@/api/sys/user'
+import { treeselect } from '@/api/sys/dept'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 export default {
   name: 'User',
@@ -216,7 +216,7 @@ export default {
       },
       listQuery: {
         currentPage: 1,
-        pageSize: 10,
+        pageSize: 10
       },
       list: null,
       total: 0,
@@ -244,9 +244,9 @@ export default {
           userId: null,
           status: 0,
           roleIds: []
-        };
-        this.resetForm("userForm");
-      },
+        }
+        this.resetForm('userForm')
+      }
     }
   },
   created() {
@@ -264,12 +264,12 @@ export default {
     /** 搜索按钮操作 */
     handleQuery() {
       this.listQuery.pageNum = 1
-      this.getList();
+      this.getList()
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.resetForm('queryForm')
+      this.handleQuery()
     },
     handleSizeChange(val) {
       this.listQuery.pageNum = 1
@@ -283,18 +283,18 @@ export default {
     /** 查询部门下拉树结构 */
     getTreeselect() {
       treeselect().then(response => {
-        this.deptOptions = response.data;
-      });
+        this.deptOptions = response.data
+      })
     },
     handleAdd() {
       this.reset()
-      this.getTreeselect();
+      this.getTreeselect()
       getUser().then(response => {
-        this.roleOptions = response.data.roles;
-        this.dialogVisible = true;
-        this.title = "添加用户";
+        this.roleOptions = response.data.roles
+        this.dialogVisible = true
+        this.title = '添加用户'
         this.isEdit = false
-      });
+      })
     },
     handleDialogConfirm() {
       this.$confirm('是否要确认?', '提示', {
@@ -303,7 +303,7 @@ export default {
         type: 'warning'
       }).then(() => {
         if (this.isEdit) {
-          updateUser(this.user.userId,this.user).then(response => {
+          updateUser(this.user.userId, this.user).then(response => {
             this.$message({
               message: '修改成功！',
               type: 'success'
@@ -324,16 +324,16 @@ export default {
       })
     },
     handleUpdate(index, row) {
-      this.getTreeselect();
-      const userId = row.userId || this.ids;
+      this.getTreeselect()
+      const userId = row.userId || this.ids
       getUser(userId).then(response => {
-        this.user = response.data.user;
-        this.roleOptions = response.data.roles;
-        this.user.roleIds = response.data.roleIds;
+        this.user = response.data.user
+        this.roleOptions = response.data.roles
+        this.user.roleIds = response.data.roleIds
         this.dialogVisible = true
         this.isEdit = true
-        this.title = "修改用户";
-      });
+        this.title = '修改用户'
+      })
     },
     handleDelete(index, row) {
       this.$confirm('是否要删除该用户?', '提示', {
@@ -349,8 +349,7 @@ export default {
           this.getUserList()
         })
       })
-    },
-
+    }
   }
 }
 </script>
