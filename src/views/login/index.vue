@@ -114,15 +114,15 @@ export default {
 
     /* 提交*/
     handleLogin() {
-      let self = this;
+      let self = this
       self.$refs.loginForm.validate((flag) => {
-        self.isShowSliderVerify = flag;
-      });
+        self.isShowSliderVerify = flag
+      })
     },
     /* 登录*/
     login() {
-      let self = this;
-      self.loading = true;
+      let self = this
+      self.loading = true
       self.$store.dispatch('user/login', self.loginForm).then(() => {
           self.$refs.sliderVerify.verifySuccessEvent()
           setTimeout(() => {

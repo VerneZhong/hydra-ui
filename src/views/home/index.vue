@@ -8,9 +8,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import img_home_order from '@/assets/images/home_order.png';
-import img_home_today_amount from '@/assets/images/home_today_amount.png';
-import img_home_yesterday_amount from '@/assets/images/home_yesterday_amount.png';
+import img_home_order from '@/assets/images/home_order.png'
+import img_home_today_amount from '@/assets/images/home_today_amount.png'
+import img_home_yesterday_amount from '@/assets/images/home_yesterday_amount.png'
 
 export default {
   name: 'Home',
