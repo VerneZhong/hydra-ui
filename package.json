@@ -28,7 +28,7 @@
     "moment": "^2.29.4",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
-    "path-to-regexp": "2.4.0",
+    "path-to-regexp": "3.3.0",
     "screenfull": "5.2.0",
     "vue": "2.6.10",
     "vue-cropper": "^0.5.5",
